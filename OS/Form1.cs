@@ -29,7 +29,7 @@ namespace OS
             dt = ET_FCFS.createEmptFCFS(pid_number);
             for (int i = 0; i < dt.Columns.Count; i++)
             {
-                if (i != 1)
+                if (i != 2)
                 {
                     dt.Columns[i].ReadOnly = true;
                 }
@@ -69,14 +69,11 @@ namespace OS
             if (ET_FCFS.Error_count == 0)
             {
                 double averageWaitingTime = ET_FCFS.AverageWaitingTime(dt, pid_number);
-                double averageTurnAroundTime = ET_FCFS.AverageTurnAroundTime(dt, pid_number);
                 lbl_FCFS_Median_Waitingtime_Value.Text = averageWaitingTime.ToString("F2") + " đơn vị thời gian";
-                lbl_TurnAroundTime_value.Text = averageTurnAroundTime.ToString("F2") + " đơn vị thời gian";
             }
             else
             {
                 lbl_FCFS_Median_Waitingtime_Value.Text = "0";
-                lbl_TurnAroundTime_value.Text = "0";
             }
         }
 
@@ -84,9 +81,7 @@ namespace OS
         {
             CreateFCFS();
             double averageWaitingTime = FCFS.AverageWaitingTime(dt, pid_number);
-            double averageTurnAroundTime = FCFS.AverageTurnAroundTime(dt, pid_number);
             lbl_FCFS_Median_Waitingtime_Value.Text = averageWaitingTime.ToString("F2") + " đơn vị thời gian";
-            lbl_TurnAroundTime_value.Text = averageTurnAroundTime.ToString("F2") + " đơn vị thời gian";
         }
 
         private void dGV_result_DataError(object sender, DataGridViewDataErrorEventArgs e)

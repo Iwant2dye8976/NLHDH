@@ -16,65 +16,67 @@ namespace OS.Manager
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Tên tiến trình", typeof(string));
-            dt.Columns.Add("Thời gian thực thi", typeof(int));
+            dt.Columns.Add("Thời điểm đến", typeof(int));
+            dt.Columns.Add("Thời gian sử dụng CPU", typeof(long));
             dt.Columns.Add("Thời gian chờ", typeof(long));
-            dt.Columns.Add("Thời gian quay vòng", typeof(long));
 
             for (int i = 0; i < pidNumber; i++)
             {
-                dt.Rows.Add("P" + (i + 1), 0, 0, 0);
+                dt.Rows.Add("P" + (i + 1), i, 0, 0);
             }
             return dt;
         }
 
         public DataTable caculateTime(DataTable dt, int pidNumber)
         {
+            int[] ar = new int[pidNumber];
             int[] wt = new int[pidNumber];
-            int[] tat = new int[pidNumber];
             uint[] bt = new uint[pidNumber];
             err_count = 0;
             for (int i = 0; i < pidNumber; i++)
             {
-                if (Convert.ToInt32(dt.Rows[i]["Thời gian thực thi"]) <= 0)
+                if (Convert.ToInt32(dt.Rows[i]["Thời gian sử dụng CPU"]) <= 0)
                 {
                     err_count++;
                     bt[i] = 0;
                 }
-                else { bt[i] = Convert.ToUInt32(dt.Rows[i]["Thời gian thực thi"]); }
+                else { bt[i] = Convert.ToUInt32(dt.Rows[i]["Thời gian sử dụng CPU"]); }
 
             }
             if (err_count != 0) { MessageBox.Show("Thời gian thực thi phải lớn hơn 0"); }
 
-            findWaitingTime(pidNumber, bt, wt);
-            findTurnAroundTime(pidNumber, bt, wt, tat);
+            findArrivalTime(pidNumber, ar, dt);
+            findWaitingTime(pidNumber, bt, ar, wt);
             dt.Clear();
             //Thêm dữ liệu vào bảng
             for (int i = 0; i < pidNumber; i++)
             {
-                dt.Rows.Add("P" + (i + 1), bt[i], wt[i], tat[i]);
+                dt.Rows.Add("P" + (i + 1), ar[i], bt[i], wt[i]);
             }
 
             return dt;
         }
 
         //Tính thời gian chờ
-        public void findWaitingTime(int n,
-                                uint[] bt, int[] wt)
+        public void findArrivalTime(int n, int[] ar, DataTable dt)
         {
-            wt[0] = 0;
+            ar[0] = 0;
             for (int i = 1; i < n; i++)
             {
-                wt[i] = (int)bt[i - 1] + wt[i - 1];
+                ar[i] = (int)dt.Rows[i][1];
             }
         }
 
         //Tính thời gian quay vòng
-        public void findTurnAroundTime(int n,
-            uint[] bt, int[] wt, int[] tat)
+        public void findWaitingTime(int n,
+            uint[] bt, int[] ar, int[] wt)
         {
-            for (int i = 0; i < n; i++)
+            wt[0] = 0;
+            int curentTime = (int)bt[0];
+            for (int i = 1; i < n; i++)
             {
-                tat[i] = (int)bt[i] + wt[i];
+                curentTime += (int)bt[i];
+                wt[i] = curentTime - ar[i] - (int)bt[i];
             }
         }
 
@@ -87,18 +89,7 @@ namespace OS.Manager
             {
                 totalWaitingTime += (long)row["Thời gian chờ"];
             }
-
             return totalWaitingTime / (double)pidNumber;
-        }
-
-        public double AverageTurnAroundTime(DataTable dt, int pidNumber)
-        {
-            long totalTurnAroundTime = 0;
-            foreach (DataRow row in dt.Rows)
-            {
-                totalTurnAroundTime += (long)row["Thời gian quay vòng"];
-            }
-            return totalTurnAroundTime / (double)pidNumber;
         }
     }
 }
