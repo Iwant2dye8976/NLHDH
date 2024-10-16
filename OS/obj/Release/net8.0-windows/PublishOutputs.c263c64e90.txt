@@ -1,0 +1,5 @@
+D:\NLHDH\OS\bin\Release\net8.0-windows\publish\OS.exe
+D:\NLHDH\OS\bin\Release\net8.0-windows\publish\OS.dll
+D:\NLHDH\OS\bin\Release\net8.0-windows\publish\OS.deps.json
+D:\NLHDH\OS\bin\Release\net8.0-windows\publish\OS.runtimeconfig.json
+D:\NLHDH\OS\bin\Release\net8.0-windows\publish\OS.pdb
