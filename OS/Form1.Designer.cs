@@ -77,6 +77,7 @@
             // 
             // btn_Done
             // 
+            btn_Done.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_Done.BackColor = Color.LightSteelBlue;
             btn_Done.FlatStyle = FlatStyle.Flat;
             btn_Done.Location = new Point(616, 325);
@@ -89,6 +90,7 @@
             // 
             // btn_Random
             // 
+            btn_Random.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btn_Random.BackColor = Color.PaleGreen;
             btn_Random.FlatStyle = FlatStyle.Flat;
             btn_Random.Location = new Point(706, 325);
@@ -105,7 +107,7 @@
             lbl_TurnAroundTime_value.AutoSize = true;
             lbl_TurnAroundTime_value.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_TurnAroundTime_value.ForeColor = Color.Red;
-            lbl_TurnAroundTime_value.Location = new Point(241, 370);
+            lbl_TurnAroundTime_value.Location = new Point(250, 370);
             lbl_TurnAroundTime_value.Name = "lbl_TurnAroundTime_value";
             lbl_TurnAroundTime_value.Size = new Size(19, 21);
             lbl_TurnAroundTime_value.TabIndex = 7;
@@ -128,7 +130,7 @@
             lbl_FCFS_Median_Waitingtime_Value.AutoSize = true;
             lbl_FCFS_Median_Waitingtime_Value.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_FCFS_Median_Waitingtime_Value.ForeColor = Color.Red;
-            lbl_FCFS_Median_Waitingtime_Value.Location = new Point(192, 335);
+            lbl_FCFS_Median_Waitingtime_Value.Location = new Point(201, 335);
             lbl_FCFS_Median_Waitingtime_Value.Name = "lbl_FCFS_Median_Waitingtime_Value";
             lbl_FCFS_Median_Waitingtime_Value.Size = new Size(19, 21);
             lbl_FCFS_Median_Waitingtime_Value.TabIndex = 5;
@@ -184,7 +186,7 @@
             // 
             tb_process.BorderStyle = BorderStyle.FixedSingle;
             tb_process.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tb_process.Location = new Point(112, 8);
+            tb_process.Location = new Point(114, 8);
             tb_process.Name = "tb_process";
             tb_process.Size = new Size(119, 29);
             tb_process.TabIndex = 0;
