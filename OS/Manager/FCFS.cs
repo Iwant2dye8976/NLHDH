@@ -14,7 +14,7 @@ namespace OS.Manager
         {
             DataTable dt =new DataTable();
             dt.Columns.Add("Tên tiến trình", typeof(string));
-            dt.Columns.Add("Thời gian thực thi", typeof(int));
+            dt.Columns.Add("Thời gian thực thi", typeof(long));
             dt.Columns.Add("Thời gian chờ", typeof(long));
             dt.Columns.Add("Thời gian quay vòng", typeof(long));
 

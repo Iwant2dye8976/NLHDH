@@ -14,3 +14,4 @@ D:\NLHDH\OS\obj\Release\net8.0-windows\refint\OS.dll
 D:\NLHDH\OS\obj\Release\net8.0-windows\OS.pdb
 D:\NLHDH\OS\obj\Release\net8.0-windows\OS.genruntimeconfig.cache
 D:\NLHDH\OS\obj\Release\net8.0-windows\ref\OS.dll
+D:\NLHDH\OS\obj\Release\net8.0-windows\OS.sourcelink.json

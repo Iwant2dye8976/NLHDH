@@ -168,6 +168,7 @@
             dGV_result.Name = "dGV_result";
             dGV_result.Size = new Size(776, 272);
             dGV_result.TabIndex = 2;
+            dGV_result.DataError += dGV_result_DataError;
             // 
             // lbl_process
             // 

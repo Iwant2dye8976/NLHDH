@@ -65,11 +65,19 @@ namespace OS
 
         private void btn_Done_Click(object sender, EventArgs e)
         {
-            dGV_result.DataSource = ET_FCFS.caculateTime(dt,pid_number);
-            double averageWaitingTime = ET_FCFS.AverageWaitingTime(dt, pid_number);
-            double averageTurnAroundTime = ET_FCFS.AverageTurnAroundTime(dt, pid_number);
-            lbl_FCFS_Median_Waitingtime_Value.Text = averageWaitingTime.ToString("F2") + " đơn vị thời gian";
-            lbl_TurnAroundTime_value.Text = averageTurnAroundTime.ToString("F2") + " đơn vị thời gian";
+            dGV_result.DataSource = ET_FCFS.caculateTime(dt, pid_number);
+            if (ET_FCFS.Error_count == 0)
+            {
+                double averageWaitingTime = ET_FCFS.AverageWaitingTime(dt, pid_number);
+                double averageTurnAroundTime = ET_FCFS.AverageTurnAroundTime(dt, pid_number);
+                lbl_FCFS_Median_Waitingtime_Value.Text = averageWaitingTime.ToString("F2") + " đơn vị thời gian";
+                lbl_TurnAroundTime_value.Text = averageTurnAroundTime.ToString("F2") + " đơn vị thời gian";
+            }
+            else
+            {
+                lbl_FCFS_Median_Waitingtime_Value.Text = "0";
+                lbl_TurnAroundTime_value.Text = "0";
+            }
         }
 
         private void btn_Random_Click(object sender, EventArgs e)
@@ -79,6 +87,11 @@ namespace OS
             double averageTurnAroundTime = FCFS.AverageTurnAroundTime(dt, pid_number);
             lbl_FCFS_Median_Waitingtime_Value.Text = averageWaitingTime.ToString("F2") + " đơn vị thời gian";
             lbl_TurnAroundTime_value.Text = averageTurnAroundTime.ToString("F2") + " đơn vị thời gian";
+        }
+
+        private void dGV_result_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Thời gian thực thi phải là số nguyên");
         }
     }
 }
